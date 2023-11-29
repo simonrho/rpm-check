@@ -12,6 +12,7 @@ from io import StringIO
 
 log_file = '/var/log/rpm-check.log'
 
+# Set up in-memory buffer for logging to avoid log messages reordering issue
 log_buffer = StringIO()
 log_formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 stream_handler = logging.StreamHandler(log_buffer)
@@ -21,6 +22,7 @@ logger = logging.getLogger('rpm-check-logger')
 logger.setLevel(logging.INFO)
 logger.addHandler(stream_handler) 
 
+# Class to format data into a table
 class Tabulate:
     def __init__(self, table, headers):
         self.table = table
@@ -43,11 +45,13 @@ class Tabulate:
         rows = [self.format_row(row, col_widths) for row in self.table]
         return '\n'.join([header_row, separator] + rows)
 
+    # String representation of the table
     def __str__(self):
         return self.create_table()
 
-
+# Function to execute CLI commands and handle XML output
 def run_cli_command(command, format='xml'):
+    # Helper function to remove XML namespaces
     def remove_namespaces(xml_text):
         root = etree.fromstring(xml_text)
 
@@ -65,6 +69,7 @@ def run_cli_command(command, format='xml'):
 
         return etree.tostring(root).decode('utf-8')
 
+    # Execute command and return parsed XML or raw output
     try:        
         if format == 'xml':
             result = subprocess.run(f'/usr/sbin/cli -c "{command} | display xml"', shell=True, text=True, capture_output=True, check=True)
@@ -78,7 +83,7 @@ def run_cli_command(command, format='xml'):
         logger.error(f"An error occurred: {e}")
         return None
 
-
+# Main function: script's entry point
 def main(): 
     logger.info(f'sys.argv: {sys.argv}')
 
@@ -230,17 +235,18 @@ def main():
     logger.info('****************')
     logger.info('')
 
+    # Append log buffer contents to the log file at the end.
+    # And change its permissions to prevent potential log access issues.
+    if not os.path.exists(log_file):
+        open(log_file, 'a').close()
+        os.chmod(log_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH | stat.S_IWOTH)
+    else:
+        os.chmod(log_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH | stat.S_IWOTH)
+
+    with open(log_file, 'a') as f:
+        f.write(log_buffer.getvalue())
+
 
 if __name__ == "__main__":
     main()
-
-
-if not os.path.exists(log_file):
-    open(log_file, 'a').close()
-    os.chmod(log_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH | stat.S_IWOTH)
-else:
-    os.chmod(log_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH | stat.S_IWOTH)
-
-with open(log_file, 'a') as f:
-    f.write(log_buffer.getvalue())
 
