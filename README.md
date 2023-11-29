@@ -14,7 +14,7 @@ This Python script is a Junos event script designed to monitor RPM (Real-time Pe
  To install the script, run the following command in your shell:
 
  ```
- curl -k -s https://raw.githubusercontent.com/simonrho/rpm-check/main/install.sh | /bin/sh
+ start shell command "curl -k -s https://raw.githubusercontent.com/simonrho/rpm-check/main/install.sh | /bin/sh"
  ```
 
 Or, copy rpm-check.py file to /var/db/scripts/event directory in your Junos system.
