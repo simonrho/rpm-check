@@ -1,21 +1,26 @@
 #!/usr/bin/env python3
 
+import os
+import stat
+import pwd
 import sys
 import argparse
 import subprocess
 import logging
 from logging.handlers import RotatingFileHandler
 from lxml import etree
+from io import StringIO
 
 log_file = '/var/log/rpm-check.log'
+
+log_buffer = StringIO()
 log_formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-log_handler = RotatingFileHandler(log_file, maxBytes=10*1024*1024, backupCount=3)
-log_handler.setFormatter(log_formatter)
+stream_handler = logging.StreamHandler(log_buffer)
+stream_handler.setFormatter(log_formatter)
 
 logger = logging.getLogger('rpm-check-logger')
 logger.setLevel(logging.INFO)
-logger.addHandler(log_handler)
-logger.addHandler(logging.StreamHandler()) 
+logger.addHandler(stream_handler) 
 
 class Tabulate:
     def __init__(self, table, headers):
@@ -226,7 +231,17 @@ def main():
     logger.info('****************')
     logger.info('')
 
+
 if __name__ == "__main__":
     main()
 
+
+if not os.path.exists(log_file):
+    open(log_file, 'a').close()
+    os.chmod(log_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH | stat.S_IWOTH)
+else:
+    os.chmod(log_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH | stat.S_IWOTH)
+
+with open(log_file, 'a') as f:
+    f.write(log_buffer.getvalue())
 

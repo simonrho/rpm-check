@@ -25,19 +25,15 @@ commit and-quit
 EOF
 )
 
-echo -e "User '${BLUE_BOLD}${MY_USER}${RESET}' is used as event script user"
-
 # Convert the multi-line string into a single line string
 COMMANDS_ONE_LINE=$(echo "$COMMANDS" | tr '\n' ';')
 
 # Ensure the last command doesn't end with an unnecessary semicolon
 COMMANDS_ONE_LINE=${COMMANDS_ONE_LINE%;}
 
-# Use the concatenated command string
 /usr/sbin/cli -c "$COMMANDS_ONE_LINE" > /dev/null
 
 echo -e "2. The ${BLUE_BOLD}${SCRIPT_NAME}${RESET} script has been successfully registered in the system.\n"
-
-# Final message
+echo -e "3. User '${BLUE_BOLD}${MY_USER}${RESET}' is used as event script user"
 echo -e "Installation complete!"
 echo -e "Please check /var/log/${SCRIPT_NAME}.log to check the '${BLUE_BOLD}${SCRIPT_NAME}${RESET}' script log.\n"
