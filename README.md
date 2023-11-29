@@ -11,8 +11,7 @@ This Python script is a Junos event script designed to monitor RPM (Real-time Pe
  - Rotates log files to manage disk space usage.
 
 ## Installation
- To install the script, run the following command in your shell:
-
+To install the script, execute the following command in your Junos CLI terminal:
  ```
  start shell command "curl -k -s https://raw.githubusercontent.com/simonrho/rpm-check/main/install.sh | /bin/sh"
  
