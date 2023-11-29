@@ -198,7 +198,7 @@ def main():
     logger.info('*****************')
     headers = ["routing instance", "test name", "target address", "status", "reason"]
     tabulated_table = Tabulate(rpm_status_table, headers)
-    logger.info("\n" + str(tabulated_table))
+    logger.info(f"\n{tabulated_table}")
     logger.info('')
 
     logger.info('************************************************')
@@ -207,7 +207,7 @@ def main():
     logger.info('************************************************')
     headers = ["routing instance", "total count", "pass count", "fail count", "pass percent", "fail percent", "status"]
     tabulated_table = Tabulate(ri_status_table, headers)
-    logger.info("\n" + str(tabulated_table))
+    logger.info(f"\n{tabulated_table}")
     logger.info('')
 
 
