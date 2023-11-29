@@ -32,8 +32,7 @@ Installation complete!
 Please check /var/log/rpm-check.log to check the 'rpm-check' script log.
 ```
 
-Or, copy rpm-check.py file to /var/db/scripts/event directory in your Junos system.
-And configure following configurations:
+Alternatively, copy the rpm-check.py file to the /var/db/scripts/event directory on your Junos system. Then, apply the following configurations:
 
 ```
 set event-options event-script file rpm-check.py python-script-user add-your-local-user-name
