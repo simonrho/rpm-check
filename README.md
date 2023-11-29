@@ -196,4 +196,75 @@ Messages sent:
 2023-11-29 01:28:10,649 INFO rpm check ends
 2023-11-29 01:28:10,649 INFO ****************
 2023-11-29 01:28:10,649 INFO 
+2023-11-29 10:01:59,115 INFO sys.argv: ['/var/db/scripts/event/rpm-check.py', '-rpm-owner', 'bng-cp', '-fail-threshold', '100', '-fail-command', 'show dhcp relay statistics routing-instance $routing-instance-name']
+2023-11-29 10:01:59,117 INFO ****************
+2023-11-29 10:01:59,117 INFO rpm check starts
+2023-11-29 10:01:59,118 INFO ****************
+2023-11-29 10:01:59,118 INFO Input options:
+2023-11-29 10:01:59,118 INFO   RPM Owner: "bng-cp"
+2023-11-29 10:01:59,118 INFO   Pass Threshold: 30.0%
+2023-11-29 10:01:59,119 INFO   Fail Threshold: 100.0%
+2023-11-29 10:01:59,119 INFO   Pass Command: ""
+2023-11-29 10:01:59,119 INFO   Fail Command: "show dhcp relay statistics routing-instance $routing-instance-name"
+2023-11-29 10:01:59,120 INFO 
+2023-11-29 10:02:00,038 INFO *****************
+2023-11-29 10:02:00,039 INFO rpm test results:
+2023-11-29 10:02:00,039 INFO *****************
+2023-11-29 10:02:00,040 INFO 
+routing instance  test name  target address  status  reason            
+----------------  ---------  --------------  ------  ------------------
+mgmt_junos        test1      8.8.8.8         FAIL    No route to target
+mgmt_junos        test2      8.8.4.4         FAIL    No route to target
+2023-11-29 10:02:00,040 INFO 
+2023-11-29 10:02:00,040 INFO ************************************************
+2023-11-29 10:02:00,040 INFO routing-instance operational status based on RPM
+2023-11-29 10:02:00,041 INFO pass threshold: 30.0%, fail threshold: 100.0%
+2023-11-29 10:02:00,041 INFO ************************************************
+2023-11-29 10:02:00,041 INFO 
+routing instance  total count  pass count  fail count  pass percent  fail percent  status
+----------------  -----------  ----------  ----------  ------------  ------------  ------
+mgmt_junos        2            0           2           0.0%          100.0%        FAIL  
+2023-11-29 10:02:00,042 INFO 
+2023-11-29 10:02:00,042 INFO ********************
+2023-11-29 10:02:00,042 INFO CLI commands to run:
+2023-11-29 10:02:00,042 INFO ********************
+2023-11-29 10:02:00,043 INFO command for 'FAIL' status of RI 'mgmt_junos': "show dhcp relay statistics routing-instance mgmt_junos"
+2023-11-29 10:02:00,965 INFO output:
+Packets dropped:
+    Total                      2568
+    dhcp-service total         2568
+
+Messages received:
+    BOOTREQUEST                0
+    DHCPDECLINE                0
+    DHCPDISCOVER               0
+    DHCPINFORM                 0
+    DHCPRELEASE                0
+    DHCPREQUEST                0
+    DHCPLEASEACTIVE            0
+    DHCPLEASEUNASSIGNED        0
+    DHCPLEASEUNKNOWN           0
+    DHCPLEASEQUERYDONE         0
+    DHCPACTIVELEASEQUERY       0
+
+Messages sent:
+    BOOTREPLY                  0
+    DHCPOFFER                  0
+    DHCPACK                    0
+    DHCPNAK                    0
+    DHCPFORCERENEW             0
+    DHCPLEASEQUERY             0
+    DHCPBULKLEASEQUERY         0
+    DHCPLEASEACTIVE            0
+    DHCPLEASEUNASSIGNED        0
+    DHCPLEASEUNKNOWN           0
+    DHCPLEASEQUERYDONE         0
+    DHCPACTIVELEASEQUERY       0
+
+2023-11-29 10:02:00,966 INFO 
+2023-11-29 10:02:00,966 INFO ****************
+2023-11-29 10:02:00,967 INFO rpm check ends
+2023-11-29 10:02:00,967 INFO ****************
+2023-11-29 10:02:00,967 INFO 
+
 ```
