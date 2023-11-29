@@ -2,7 +2,6 @@
 
 import os
 import stat
-import pwd
 import sys
 import argparse
 import subprocess
