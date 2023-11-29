@@ -240,8 +240,6 @@ def main():
     if not os.path.exists(log_file):
         open(log_file, 'a').close()
         os.chmod(log_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH | stat.S_IWOTH)
-    else:
-        os.chmod(log_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH | stat.S_IWOTH)
 
     with open(log_file, 'a') as f:
         f.write(log_buffer.getvalue())
