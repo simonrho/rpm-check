@@ -38,11 +38,12 @@ set event-options event-script file rpm-check.py python-script-user add-your-loc
 ```
 
 ### Arguments
- - `rpm-owner`: Specifies the owner of the RPM probe.
+ - `rpm-owner`: Specifies the owner of the RPM probe. 
  - `pass-threshold`: Sets the threshold for a pass condition (default: 30.0%).
  - `fail-threshold`: Sets the threshold for a fail condition (default: 100.0%).
  - `pass-command`: CLI command to execute upon passing. `$routing-instance-name` is a placeholder for the routing-instance-name.
  - `fail-command`: CLI command to execute upon failing. `$routing-instance-name` is a placeholder for the routing-instance-name.
+> **Note:** Specifies the owner of the RPM probe. The 'rpm-owner' value will be used to correlate RPM probes using the same 'rpm-owner' value.
 
 ## Logging
  - The script logs detailed information in `/var/log/rpm-check.log`.
