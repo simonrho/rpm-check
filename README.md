@@ -19,7 +19,7 @@ This Python script is a Junos event script designed to monitor RPM (Real-time Pe
  ```
 
 ### Installation output sample
-```sh
+```
 root@alpha> start shell command "curl -k -s https://raw.githubusercontent.com/simonrho/rpm-check/main/install.sh | /bin/sh"    
 
 Starting the installation of the Juniper RPM Check script...
