@@ -1,0 +1,37 @@
+event-options {
+    generate-event {
+        every-1min time-interval 60;
+    }
+    policy generate-core-down-on-ping-failure {
+        events ping_probe_failed;       
+        within 3 {
+            trigger after 1;
+        }
+        then {
+            event-script rpm-check.py {
+                arguments {
+                    rpm-owner bng-cp;
+                    fail-threshold 100;
+                    fail-command "show dhcp relay statistics routing-instance $routing-instance-name";
+                }
+            }
+        }
+    }
+    policy generate-core-up-on-ping-success {
+        events every-1min;
+        then {
+            event-script rpm-check.py {
+                arguments {
+                    rpm-owner bng-cp;
+                    pass-threshold 30;
+                    pass-command "show dhcp server statistics routing-instance $routing-instance-name";
+                }
+            }
+        }
+    }
+    event-script {
+        file rpm-check.py {
+            python-script-user <user name>;
+        }
+    }
+}
