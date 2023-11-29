@@ -15,7 +15,22 @@ This Python script is a Junos event script designed to monitor RPM (Real-time Pe
 
  ```
  start shell command "curl -k -s https://raw.githubusercontent.com/simonrho/rpm-check/main/install.sh | /bin/sh"
+ 
  ```
+
+### Installation output sample
+```sh
+root@alpha> start shell command "curl -k -s https://raw.githubusercontent.com/simonrho/rpm-check/main/install.sh | /bin/sh"    
+
+Starting the installation of the Juniper RPM Check script...
+
+1. The rpm-check script has been successfully downloaded.
+User 'mist' is used as event script user
+2. The rpm-check script has been successfully registered in the system.
+
+Installation complete!
+Please check /var/log/rpm-check.log to check the 'rpm-check' script log.
+```
 
 Or, copy rpm-check.py file to /var/db/scripts/event directory in your Junos system.
 And configure following configurations:
