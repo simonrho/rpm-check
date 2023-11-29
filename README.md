@@ -1,3 +1,19 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [RPM Monitoring Script](#rpm-monitoring-script)
+  - [Overview](#overview)
+  - [Features](#features)
+  - [Installation](#installation)
+    - [Installation output sample](#installation-output-sample)
+    - [Arguments](#arguments)
+  - [Logging](#logging)
+  - [Config Example](#config-example)
+  - [Log file sample](#log-file-sample)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # RPM Monitoring Script
 
 ## Overview
