@@ -96,6 +96,7 @@ event-options {
                     fail-threshold 100;
                     fail-command "show dhcp relay statistics routing-instance $routing-instance-name";
                 }
+                user-name <add-your-user-name>;
             }
         }
     }
@@ -108,12 +109,13 @@ event-options {
                     pass-threshold 30;
                     pass-command "show dhcp server statistics routing-instance $routing-instance-name";
                 }
+                user-name <add-your-user-name>;
             }
         }
     }
     event-script {
         file rpm-check.py {
-            python-script-user add-your-local-user-name;
+            python-script-user <add-your-user-name>;
         }
     }
 }
